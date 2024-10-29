@@ -1,4 +1,4 @@
 package com.pluralsight.cardealership;
 
-public class SalesContract {
+public class SalesContract extends Contract{
 }
