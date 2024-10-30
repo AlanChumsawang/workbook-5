@@ -5,7 +5,7 @@ public class Vehicles {
     int numberOfPasengers;
     int cargoCapacity;
     int fuelCapacity;
-    
+
 
     public String getColor() {
         return color;

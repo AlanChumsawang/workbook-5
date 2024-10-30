@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+.idea
 <<<<<<< Updated upstream
 .idea/modules.xml
 .idea/jarRepositories.xml
