@@ -63,4 +63,6 @@ public abstract class Contract {
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
+
+    public abstract void save();
 }

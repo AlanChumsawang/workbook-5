@@ -1,6 +1,10 @@
 package com.pluralsight.cardealership;
 
-public class SalesContract extends Contract{
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class SalesContract extends Contract {
     private double salesTax = 0.05;
     private double recordingFee = 100.00;
     private double processingFee;
@@ -11,10 +15,9 @@ public class SalesContract extends Contract{
     public SalesContract(String startDate, String customerName, String customerEmail, int customerId, Vehicle vehicle,
                          double totalPrice, double monthlyPayment, boolean isFinanced, double annualInterestRate) {
         super(startDate, customerName, customerEmail, customerId, vehicle, totalPrice, monthlyPayment);
-        if (vehicle.getPrice() < 10000){
+        if (vehicle.getPrice() < 10000) {
             this.processingFee = 295.00;
-        }
-        else {
+        } else {
             this.processingFee = 495.00;
         }
         this.isFinanced = isFinanced;
@@ -41,51 +44,15 @@ public class SalesContract extends Contract{
         return monthlyPayment;
     }
 
-    public double getSalesTax() {
-        return salesTax;
-    }
-
-    public void setSalesTax(double salesTax) {
-        this.salesTax = salesTax;
-    }
-
-    public double getRecordingFee() {
-        return recordingFee;
-    }
-
-    public void setRecordingFee(double recordingFee) {
-        this.recordingFee = recordingFee;
-    }
-
-    public double getProcessingFee() {
-        return processingFee;
-    }
-
-    public void setProcessingFee(double processingFee) {
-        this.processingFee = processingFee;
-    }
-
-    public boolean isFinanced() {
-        return isFinanced;
-    }
-
-    public void setFinanced(boolean financed) {
-        isFinanced = financed;
-    }
-
-    public double getAnnualInterestRate() {
-        return annualInterestRate;
-    }
-
-    public void setAnnualInterestRate(double annualInterestRate) {
-        this.annualInterestRate = annualInterestRate;
-    }
-
-    public int getLoanTerm() {
-        return loanTerm;
-    }
-
-    public void setLoanTerm(int loanTerm) {
-        this.loanTerm = loanTerm;
+    @Override
+    public void save() {
+        try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter("contracts.csv", true))) {
+            bufWriter.write("SALES|" + getStartDate() + "|" + getCustomerName() + "|" + getCustomerEmail() + "|" + getCustomerId() + "|" +
+                    getVehicle().getVin() + "|" + getVehicle().getYear() + "|" + getVehicle().getMake() + "|" + getVehicle().getModel() + "|" +
+                    getVehicle().getVehicleType() + "|" + getVehicle().getColor() + "|" + getVehicle().getOdometer() + "|" + getVehicle().getPrice() + "|" +
+                    getTotalPrice() + "|" + getMonthlyPayment() + "|" + isFinanced + "|" + annualInterestRate + "|" + loanTerm);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
