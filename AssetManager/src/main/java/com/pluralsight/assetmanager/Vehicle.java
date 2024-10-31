@@ -45,12 +45,12 @@ public class Vehicle extends Asset {
             value = originalCost - (0.06 * originalCost);
         } else if (year >= 2014) {
             value = originalCost - (0.08 * originalCost);
-        } else if (year < 2014) {
+        } else {
             value = originalCost - (1000);
         }
 
-        if (!makeModel.toLowerCase().contains("toyota") && !makeModel.contains("honda") && odometer > 100000) {
-            value = value - (0.25 * originalCost);
+        if (!getMakeModel().toLowerCase().contains("toyota") && !getMakeModel().toLowerCase().contains("honda") && getOdometer() > 100000) {
+            value = value - (0.25 * value);
         }
         return value;
     }
