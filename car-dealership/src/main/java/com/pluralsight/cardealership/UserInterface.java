@@ -18,11 +18,11 @@ public class UserInterface {
         init(); // Initialize the dealership
         boolean isDone = false;
         while (!isDone) {
-            displayMainMenu(); // Display the main menu
+            Menus.getMainMenu(); // Display the main menu
             String userInput = inputScanner.nextLine(); // Wait for user input
             switch (userInput) {
                 case "1":
-                    displayVehicles(dealership.getAllVehicles());
+                    displayVehicles(dealership.getAllVehicles(), inputScanner);
                     break;
                 case "2":
                     // Search for a vehicle
@@ -47,38 +47,10 @@ public class UserInterface {
     }
 
 
-    // Display the main menu
-    private static void displayMainMenu() {
-        System.out.print("""
-                        \n
-                        ==============================
-                        Welcome to the Car Dealership
-                        ==============================
-                1. View all vehicles
-                2. Search for a vehicle
-                3. Add a vehicle
-                4. Remove a vehicle
-                5. Exit
-                Choose an option: """);
-    }
-
-    private static void displaySearchMenu(){
-        System.out.print("""
-                \n
-                1. Search by Price
-                2. Search by Make and Model
-                3. Search by Year
-                4. Search by Color
-                5. Search by Mileage
-                6. Search by Type
-                7. Return to Main Menu
-                Chose an option: """);
-    }
-
     private void searchMenu(Scanner scanner){
             boolean isDone = false;
             while ( (!isDone)) {
-                displaySearchMenu();
+                Menus.getSearchMenu();
                 String userInput = scanner.nextLine();
                 switch (userInput) {
                     case "1":
@@ -89,7 +61,7 @@ public class UserInterface {
                         System.out.print("Enter maximum price: ");
                         double maxPrice = scanner.nextDouble();
                         scanner.nextLine(); // Consume newline
-                        displayVehicles(dealership.getVehicleByPrice(minPrice, maxPrice));
+                        displayVehicles(dealership.getVehicleByPrice(minPrice, maxPrice), scanner);
                         break;
                     case "2":
                         // Search by make and model
@@ -97,33 +69,33 @@ public class UserInterface {
                         String make = scanner.nextLine();
                         System.out.print("Enter model: ");
                         String model = scanner.nextLine();
-                        displayVehicles(dealership.getVehicleByMakeModel(make, model));
+                        displayVehicles(dealership.getVehicleByMakeModel(make, model), scanner);
                         break;
                     case "3":
                         // Search by year
                         System.out.print("Enter year: ");
                         int year = scanner.nextInt();
                         scanner.nextLine(); // Consume newline
-                        displayVehicles(dealership.getVehicleByYear(year));
+                        displayVehicles(dealership.getVehicleByYear(year), scanner);
                         break;
                     case "4":
                         // Search by color
                         System.out.print("Enter color: ");
                         String color = scanner.nextLine();
-                        displayVehicles(dealership.getVehicleByColor(color));
+                        displayVehicles(dealership.getVehicleByColor(color), scanner);
                         break;
                     case "5":
                         // Search by mileage
                         System.out.print("Enter maximum mileage: ");
                         int mileage = scanner.nextInt();
                         scanner.nextLine(); // Consume newline
-                        displayVehicles(dealership.getVehicleByMileage(mileage));
+                        displayVehicles(dealership.getVehicleByMileage(mileage), scanner);
                         break;
                     case "6":
                         // Search by type
                         System.out.print("Enter type: ");
                         String type = scanner.nextLine();
-                        displayVehicles(dealership.getVehicleByType(type));
+                        displayVehicles(dealership.getVehicleByType(type), scanner);
                         break;
                     case "7":
                         // Return to main menu
@@ -176,16 +148,27 @@ public class UserInterface {
         }
     }
 
-    private void displayVehicles(ArrayList<Vehicle> vehicleList){
-        for (Vehicle vehicle : vehicleList) {
-            System.out.print("\n" + vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel() + " \n" + "    "
-                    + "Type: " + vehicle.getVehicleType() + " | Mileage: " + vehicle.getOdometer() + " | Price: $" +
-                    vehicle.getPrice() + " | Vin:" + vehicle.getVin() + " | Color: " + vehicle.getColor() + "\n");
+    private void displayVehicles(ArrayList<Vehicle> vehicleList, Scanner inputScanner){
+        if (vehicleList.size() == 0) {
+            System.out.println("No vehicles found.");
+            return;
         }
-        System.out.println("\n");
+        else {
+            for (Vehicle vehicle : vehicleList) {
+                System.out.print("\n" + vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel() + " \n" + "    "
+                        + "Type: " + vehicle.getVehicleType() + " | Mileage: " + vehicle.getOdometer() + " | Price: $" +
+                        vehicle.getPrice() + " | Vin:" + vehicle.getVin() + " | Color: " + vehicle.getColor() + "\n");
+            }
+        }
+        System.out.println("\n Purchase a vehicle by entering the VIN or return to the main menu by entering 0: ");
+        int userInput = inputScanner.nextInt();
+        inputScanner.nextLine(); // Consume newline
+        if (userInput == 0) {
+            return;
+        }
+        else {
+            // Purchase the vehicle
+            System.out.println("Purchased");
+        }
     }
-
-
-
-
 }
