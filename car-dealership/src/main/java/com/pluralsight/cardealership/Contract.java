@@ -16,7 +16,7 @@ public abstract class Contract {
         this.customerEmail = customerEmail;
         this.customerId = customerId;
         this.vehicle = vehicle;
-        this.totalPrice =totalPrice;
+        this.totalPrice = totalPrice;
         this.monthlyPayment = monthlyPayment;
     }
 
@@ -28,41 +28,25 @@ public abstract class Contract {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
     public String getCustomerName() {
         return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
     }
 
     public String getCustomerEmail() {
         return customerEmail;
     }
 
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
     public int getCustomerId() {
         return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
     }
 
     public Vehicle getVehicle() {
         return vehicle;
     }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
-    }
-
-    public abstract void save();
 }
+
+
+
+
+
+

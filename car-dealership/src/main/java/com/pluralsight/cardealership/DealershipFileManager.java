@@ -1,17 +1,19 @@
 package com.pluralsight.cardealership;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 public class DealershipFileManager {
 
 
-    public void getDealership(){
+    public Dealership getDealership(String file){
         try {
-            FileReader fileReader = new FileReader("src/main/resources/inventory.csv");
+            FileReader fileReader = new FileReader(file);
             BufferedReader bufReader = new BufferedReader(fileReader);
-            String currentLine = bufReader.readLine();
-            String[] dealershipInfo = currentLine.split("[|]");
+            String currentLine = bufReader.readLine();// Read the first line
+            String[] dealershipInfo = currentLine.split("[|]");// Split the line at each | and place into dealership info
             String dealershipName = dealershipInfo[0];
             String dealershipAddress = dealershipInfo[1];
             String dealershipPhone = dealershipInfo[2];
@@ -29,10 +31,26 @@ public class DealershipFileManager {
                 Vehicle vehicle = new Vehicle(vin, year, make, model, type, color, odometer, price);
                 dealership.addVehicle(vehicle);
             }
+            return dealership;
         }
         catch(Exception e){
             System.out.println("File not found");
             throw new RuntimeException();
+        }
+    }
+    public void saveDealership(Dealership dealership){
+        try{
+            FileWriter fileWriter = new FileWriter("src/main/resources/inventory.csv");
+            BufferedWriter bufWriter = new BufferedWriter(fileWriter);
+            for (Vehicle vehicle : dealership.getAllVehicles()){
+                bufWriter.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" +
+                        vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" +
+                        vehicle.getOdometer() + "|" + vehicle.getPrice() + "\n");
+            }
+            bufWriter.close();
+        }
+        catch (Exception e){
+            System.out.println("File not found");
         }
     }
 }

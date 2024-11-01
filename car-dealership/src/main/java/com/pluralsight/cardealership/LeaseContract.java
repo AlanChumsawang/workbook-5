@@ -1,9 +1,5 @@
 package com.pluralsight.cardealership;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 public class LeaseContract extends Contract {
     private double expectedEndingValue;
     private double leaseFee;
@@ -22,18 +18,6 @@ public class LeaseContract extends Contract {
 
     @Override
     public double getMonthlyPayment() {
-        return ()
-    }
-
-    @Override
-    public void save() {
-        try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter("contracts.csv", true))) {
-            bufWriter.write("LEASE|" + getStartDate() + "|" + getCustomerName() + "|" + getCustomerEmail() + "|" + getCustomerId() + "|" +
-                    getVehicle().getVin() + "|" + getVehicle().getYear() + "|" + getVehicle().getMake() + "|" + getVehicle().getModel() + "|" +
-                    getVehicle().getVehicleType() + "|" + getVehicle().getColor() + "|" + getVehicle().getOdometer() + "|" + getVehicle().getPrice() + "|" +
-                    getTotalPrice() + "|" + getMonthlyPayment() + "|");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        return 0;
     }
 }

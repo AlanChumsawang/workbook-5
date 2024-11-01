@@ -43,16 +43,4 @@ public class SalesContract extends Contract {
         double monthlyPayment = getTotalPrice() / loanTerm;
         return monthlyPayment;
     }
-
-    @Override
-    public void save() {
-        try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter("contracts.csv", true))) {
-            bufWriter.write("SALES|" + getStartDate() + "|" + getCustomerName() + "|" + getCustomerEmail() + "|" + getCustomerId() + "|" +
-                    getVehicle().getVin() + "|" + getVehicle().getYear() + "|" + getVehicle().getMake() + "|" + getVehicle().getModel() + "|" +
-                    getVehicle().getVehicleType() + "|" + getVehicle().getColor() + "|" + getVehicle().getOdometer() + "|" + getVehicle().getPrice() + "|" +
-                    getTotalPrice() + "|" + getMonthlyPayment() + "|" + isFinanced + "|" + annualInterestRate + "|" + loanTerm);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
