@@ -1,12 +1,14 @@
 package com.pluralsight.cardealership;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Dealership {
     private String name;
     private String address;
     private String phone;
     private ArrayList<Vehicle> inventory;
+
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
@@ -97,6 +99,38 @@ public class Dealership {
 
     public String getPhone() {
         return phone;
+    }
+
+    public void purchaseVehicle(int vin, Scanner inputScanner) {
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVin() == vin) {
+                System.out.println(vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel() + "\n1:Purchase\n2:Lease\n3:Return to main menu");
+                int purchaseOption = inputScanner.nextInt();
+                inputScanner.nextLine();
+                switch (purchaseOption) {
+                    case 1:
+                        System.out.println("Would you like to finance the vehicle? (Y/N)");
+                        String financeOption = inputScanner.nextLine();
+                        if (financeOption.equalsIgnoreCase("Y")) {
+                            //SalesContract salesContract = new SalesContract()
+                        } else {
+                            System.out.println("Purchased");
+                        }
+                        inventory.remove(vehicle);
+                        return;
+                    case 2:
+                        System.out.println("Leased");
+                        inventory.remove(vehicle);
+                        return;
+                    case 3:
+                        return;
+                    default:
+                        System.out.println("Invalid option");
+                        return;
+                }
+                //inventory.remove(vehicle);
+            }
+        }
     }
 
     @Override

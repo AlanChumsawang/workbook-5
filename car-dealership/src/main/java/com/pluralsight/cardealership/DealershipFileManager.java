@@ -1,9 +1,6 @@
 package com.pluralsight.cardealership;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 public class DealershipFileManager {
 
@@ -32,10 +29,12 @@ public class DealershipFileManager {
                 dealership.addVehicle(vehicle);
             }
             return dealership;
-        }
-        catch(Exception e){
-            System.out.println("File not found");
-            throw new RuntimeException();
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading file: " + file, e);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException("Error parsing number in file: " + file, e);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Error processing file: " + file, e);
         }
     }
     public void saveDealership(Dealership dealership){

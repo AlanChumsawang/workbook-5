@@ -6,10 +6,11 @@ import java.util.Scanner;
 public class UserInterface {
     Dealership dealership; // Declare the dealership variable
     DealershipFileManager fileManager;
+    String inventoryFile = "src/main/resources/inventory.csv";
     // Constructor
     private void init() {
         fileManager = new DealershipFileManager();
-        dealership = fileManager.getDealership("src/main/resources/inventory.csv");
+        dealership = fileManager.getDealership(inventoryFile);
     }
 
     // Display the user interface
