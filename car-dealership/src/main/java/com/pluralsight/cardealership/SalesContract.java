@@ -53,7 +53,7 @@ public class SalesContract extends Contract {
 
     @Override
     public double getTotalPrice() {
-        return getVehicle().getPrice() + salesTax + recordingFee + processingFee;
+        return Math.round(getVehicle().getPrice() + salesTax + recordingFee + processingFee);
     }
 
     @Override

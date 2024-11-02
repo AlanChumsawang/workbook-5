@@ -10,7 +10,12 @@ public class LeaseContract extends Contract {
     }
 
     public double getExpectedEndingValue(Vehicle vehicle) {
-        return ((vehicle.getPrice()) + ((vehicle.getPrice() * 0.04) * 3));
+        return vehicle.getPrice() * 0.5;
+    }
+
+    public double getLeaseFee() {
+        leaseFee = Math.round(getVehicle().getPrice() * 0.07);
+        return leaseFee;
     }
     @Override
     public double getTotalPrice() {
@@ -27,6 +32,6 @@ public class LeaseContract extends Contract {
         return ("Lease" + "|" + contract.getStartDate() + "|" + contract.getCustomerName() + "|" +
                 contract.getCustomerEmail() + "|" + vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" +
                 vehicle.getModel() + "|" + vehicle.getColor() + "|" + contract.getCustomerId() + "|" + vehicle.getPrice() + "|" +
-                getExpectedEndingValue(vehicle) + "|" + leaseFee + "|" + contract.getTotalPrice() +  "|" + contract.monthlyPayment);
+                getExpectedEndingValue(vehicle) + "|" + getLeaseFee() + "|" + contract.getTotalPrice() +  "|" + contract.monthlyPayment);
     }
 }

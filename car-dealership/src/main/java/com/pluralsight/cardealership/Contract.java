@@ -1,5 +1,7 @@
 package com.pluralsight.cardealership;
 
+import java.util.ArrayList;
+
 public abstract class Contract {
     private String startDate;
     private String customerName;

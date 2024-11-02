@@ -169,6 +169,7 @@ public class UserInterface {
         }
         else {
             dealership.purchaseVehicle(userInput, inputScanner);
+            fileManager.saveDealership(dealership);
         }
     }
 }

@@ -133,6 +133,7 @@ public class Dealership {
                         }
 
                         inventory.remove(vehicle);
+
                         return;
                     case 2:
                         LeaseContract leaseContract = new LeaseContract(startDate, customerName, customerEmail, customerId,
