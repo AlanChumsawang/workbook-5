@@ -168,8 +168,7 @@ public class UserInterface {
             return;
         }
         else {
-            // Purchase the vehicle
-            System.out.println("Purchased");
+            dealership.purchaseVehicle(userInput, inputScanner);
         }
     }
 }

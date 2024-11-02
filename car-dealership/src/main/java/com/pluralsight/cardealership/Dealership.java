@@ -1,6 +1,9 @@
 package com.pluralsight.cardealership;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Dealership {
@@ -100,27 +103,42 @@ public class Dealership {
     public String getPhone() {
         return phone;
     }
-
     public void purchaseVehicle(int vin, Scanner inputScanner) {
+        LocalDate currentDate = LocalDate.now();
+        String startDate = DateTimeFormatter.ofPattern("yyyyMMdd").format(currentDate);
+        int customerId = (int) (Math.random() * 900000) + 100000;
+        System.out.print("Enter your name: ");
+        String customerName = inputScanner.nextLine();
+        System.out.print("Enter your email: ");
+        String customerEmail = inputScanner.nextLine();
+        ContractFileManager contractFileManager = new ContractFileManager();
         for (Vehicle vehicle : inventory) {
             if (vehicle.getVin() == vin) {
-                System.out.println(vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel() + "\n1:Purchase\n2:Lease\n3:Return to main menu");
+                System.out.println("\n" + vehicle.getYear() + " " + vehicle.getMake() + " " + vehicle.getModel() + "\n1:Purchase\n2:Lease\n3:Return to main menu");
                 int purchaseOption = inputScanner.nextInt();
                 inputScanner.nextLine();
                 switch (purchaseOption) {
                     case 1:
-                        System.out.println("Would you like to finance the vehicle? (Y/N)");
+                        System.out.print("Would you like to finance the vehicle? (Y/N): ");
                         String financeOption = inputScanner.nextLine();
                         if (financeOption.equalsIgnoreCase("Y")) {
-                            //SalesContract salesContract = new SalesContract()
+                            SalesContract salesContract = new SalesContract(startDate, customerName, customerEmail,
+                                    customerId, vehicle, vehicle.getPrice(), true);
+                            contractFileManager.saveContract(salesContract);
+                            inventory.remove(vehicle);
                         } else {
-                            System.out.println("Purchased");
+                            SalesContract salesContract = new SalesContract(startDate, customerName, customerEmail,
+                                    customerId, vehicle, vehicle.getPrice(), false);
+                            contractFileManager.saveContract(salesContract);
                         }
+
                         inventory.remove(vehicle);
                         return;
                     case 2:
-                        System.out.println("Leased");
+                        LeaseContract leaseContract = new LeaseContract(startDate, customerName, customerEmail, customerId,
+                                vehicle, vehicle.getPrice());
                         inventory.remove(vehicle);
+                        contractFileManager.saveContract(leaseContract);
                         return;
                     case 3:
                         return;
@@ -132,7 +150,6 @@ public class Dealership {
             }
         }
     }
-
     @Override
     public String toString() {
         return "Dealership{" +
