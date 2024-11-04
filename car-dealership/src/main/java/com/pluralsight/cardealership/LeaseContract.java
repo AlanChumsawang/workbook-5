@@ -31,7 +31,8 @@ public class LeaseContract extends Contract {
     public String formatContract(Contract contract, Vehicle vehicle) {
         return ("Lease" + "|" + contract.getStartDate() + "|" + contract.getCustomerName() + "|" +
                 contract.getCustomerEmail() + "|" + vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" +
-                vehicle.getModel() + "|" + vehicle.getColor() + "|" + contract.getCustomerId() + "|" + vehicle.getPrice() + "|" +
+                vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + contract.getCustomerId() + "|" + vehicle.getPrice() + "|" +
                 getExpectedEndingValue(vehicle) + "|" + getLeaseFee() + "|" + contract.getTotalPrice() +  "|" + contract.monthlyPayment);
     }
+
 }

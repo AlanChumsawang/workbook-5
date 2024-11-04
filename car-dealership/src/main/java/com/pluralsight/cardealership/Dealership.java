@@ -11,13 +11,14 @@ public class Dealership {
     private String address;
     private String phone;
     private ArrayList<Vehicle> inventory;
-
+    private ArrayList<Contract> contractsList;
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.inventory = new ArrayList<Vehicle>();
+        this.contractsList = new ArrayList<Contract>();
     }
 
     public void addVehicle(Vehicle vehicle) {
@@ -30,6 +31,15 @@ public class Dealership {
 
     public ArrayList<Vehicle> getAllVehicles() {
         return inventory;
+    }
+
+    public Vehicle getVehicleByVin(int vin) {
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVin() == vin) {
+                return vehicle;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Vehicle> getVehicleByPrice(double min, double max) {
@@ -151,6 +161,28 @@ public class Dealership {
             }
         }
     }
+
+    public ArrayList<Contract> getContractsList() {
+        return contractsList;
+    }
+
+    public void addContract(Contract contract) {
+        contractsList.add(contract);
+    }
+
+    public ArrayList<Contract> getLast10Contracts() {
+        ArrayList<Contract> last10Contracts = new ArrayList<Contract>();
+        int size = contractsList.size();
+        if (size <= 10) {
+            return contractsList;
+        } else {
+            for (int i = size - 10; i < size; i++) {
+                last10Contracts.add(contractsList.get(i));
+            }
+            return last10Contracts;
+        }
+    }
+
     @Override
     public String toString() {
         return "Dealership{" +

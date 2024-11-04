@@ -54,6 +54,10 @@ public class Vehicle {
         return price;
     }
 
+    public String getType() {
+        return vehicleType;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +

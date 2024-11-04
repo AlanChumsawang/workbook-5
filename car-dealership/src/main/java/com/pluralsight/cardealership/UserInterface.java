@@ -6,11 +6,15 @@ import java.util.Scanner;
 public class UserInterface {
     Dealership dealership; // Declare the dealership variable
     DealershipFileManager fileManager;
+    ContractFileManager contractFileManager;
     String inventoryFile = "src/main/resources/inventory.csv";
     // Constructor
     private void init() {
         fileManager = new DealershipFileManager();
         dealership = fileManager.getDealership(inventoryFile);
+        contractFileManager = new ContractFileManager();
+        contractFileManager.loadContracts(dealership);
+
     }
 
     // Display the user interface
@@ -20,7 +24,7 @@ public class UserInterface {
         boolean isDone = false;
         while (!isDone) {
             Menus.getMainMenu(); // Display the main menu
-            String userInput = inputScanner.nextLine(); // Wait for user input
+            String userInput = inputScanner.nextLine().toUpperCase(); // Wait for user input
             switch (userInput) {
                 case "1":
                     displayVehicles(dealership.getAllVehicles(), inputScanner);
@@ -30,24 +34,51 @@ public class UserInterface {
                     searchMenu(inputScanner);
                     break;
                 case "3":
-                    // Add a vehicle
-                    addVehicleMenu(inputScanner);
-                    break;
-                case "4":
-                    // Remove a vehicle
-                    removeVehicleMenu(inputScanner);
-                    break;
-                case "5":
-                    // Exit
                     isDone = true;
                     break;
+
+                case "ADMIN":
+                    adminMenu(inputScanner);
+                    break;
+
+
                 default:// Handle invalid input
                     System.out.println("Invalid input. Please try again.");
             }
         }
     }
 
-
+    private void adminMenu(Scanner scanner){
+        boolean isDone = false;
+        while (!isDone) {
+            Menus.getAdminMenu();
+            String userInput = scanner.nextLine();
+            switch (userInput) {
+                case "1":
+                    // Add vehicle
+                    addVehicleMenu(scanner);
+                    break;
+                case "2":
+                    // Remove vehicle
+                    removeVehicleMenu(scanner);
+                    break;
+                case "3":
+                    // View all contracts
+                    displayContracts(dealership.getContractsList());
+                    break;
+                case "4":
+                    // View last 10 contracts
+                    displayContracts(dealership.getLast10Contracts());
+                    break;
+                case "5":
+                    // Return to main menu
+                    isDone = true;
+                    break;
+                default:
+                    System.out.println("Invalid input. Please try again.");
+            }
+        }
+    }
     private void searchMenu(Scanner scanner){
             boolean isDone = false;
             while ( (!isDone)) {
@@ -170,6 +201,19 @@ public class UserInterface {
         else {
             dealership.purchaseVehicle(userInput, inputScanner);
             fileManager.saveDealership(dealership);
+        }
+    }
+
+    private void displayContracts(ArrayList<Contract> contractList){
+        System.out.println();
+        if (contractList.size() == 0) {
+            System.out.println("No contracts found.");
+            return;
+        }
+        else {
+            for (Contract contract : contractList) {
+                System.out.println(contract.formatContract(contract, contract.getVehicle()));
+            }
         }
     }
 }

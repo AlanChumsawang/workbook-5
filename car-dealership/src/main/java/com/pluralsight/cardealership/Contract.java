@@ -11,6 +11,7 @@ public abstract class Contract {
     private double totalPrice;
     public double monthlyPayment;
 
+
     public Contract(String startDate, String customerName, String customerEmail, int customerId, Vehicle vehicle) {
         this.startDate = startDate;
         this.customerName = customerName;
@@ -19,6 +20,7 @@ public abstract class Contract {
         this.vehicle = vehicle;
         this.totalPrice = getTotalPrice();
         this.monthlyPayment = getMonthlyPayment();
+
     }
 
     public abstract double getTotalPrice();
@@ -46,6 +48,8 @@ public abstract class Contract {
     public Vehicle getVehicle() {
         return vehicle;
     }
+
+
 }
 
 

@@ -61,11 +61,12 @@ public class SalesContract extends Contract {
         return getTotalPrice() / loanTerm;
     }
 
+
     @Override
     public String formatContract(Contract contract, Vehicle vehicle) {
         return ("SALE" + "|" + contract.getStartDate() + "|" + contract.getCustomerName() + "|" +
                 contract.getCustomerEmail() + "|" + vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" +
-                vehicle.getModel() + "|" + vehicle.getColor() + "|" + contract.getCustomerId() + "|" + vehicle.getPrice() + "|" + salesTax + "|" +
+                vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + contract.getCustomerId() + "|" + vehicle.getPrice() + "|" + salesTax + "|" +
                 recordingFee + "|" + processingFee + "|" + getTotalPrice() + "|" + isFinanced + "|" + annualInterestRate);
     }
 }
