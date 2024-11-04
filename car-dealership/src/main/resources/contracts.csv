@@ -12,9 +12,9 @@ SALE|20240401|Alice Green|alice.green@example.com|60901|2016|Hyundai|Elantra|Sed
 LEASE|20240515|Bob White|bob.white@example.com|71012|2022|Kia|Sorento|SUV|Black|345678|28000.00|14000.00|1960.00|15960.00|443.33
 SALE|20240620|Charlie Black|charlie.black@example.com|81123|2014|Nissan|Altima|Sedan|Red|456789|10000.00|500.00|100.00|495.00|11095.00|true|0.0425
 LEASE|20240725|Diana Blue|diana.blue@example.com|91234|2023|Mazda|CX-5|SUV|White|567890|32000.00|16000.00|2240.00|18240.00|506.67
-SALE|20240830|Evan Brown|evan.brown@example.com|101345|2013|Chevrolet|Malibu|Sedan|Gray|678901|9000.00|450.00|100.00|295.00|9845.00|true|0.0425
-LEASE|20240905|Fiona Red|fiona.red@example.com|111456|2021|Subaru|Outback|SUV|Green|789012|35000.00|17500.00|2450.00|19950.00|554.17
-SALE|20241010|George Yellow|george.yellow@example.com|121567|2015|Volkswagen|Jetta|Sedan|Silver|890123|13000.00|650.00|100.00|495.00|14245.00|true|0.0425
-LEASE|20241115|Hannah Purple|hannah.purple@example.com|131678|2020|Honda|CR-V|SUV|Blue|901234|30000.00|15000.00|2100.00|17100.00|475.00
-SALE|20241220|Ian Orange|ian.orange@example.com|141789|2017|Ford|Fusion|Sedan|Black|123456|14000.00|700.00|100.00|495.00|15295.00|true|0.0425
-LEASE|20250125|Jack Pink|jack.pink@example.com|151890|2022|Toyota|RAV4|SUV|Red|234567|36000.00|18000.00|2520.00|20520.00|570.00
+SALE|20240830|Evan Brown|evan.brown@example.com|10345|2013|Chevrolet|Malibu|Sedan|Gray|678901|9000.00|450.00|100.00|295.00|9845.00|true|0.0425
+LEASE|20240905|Fiona Red|fiona.red@example.com|11146|2021|Subaru|Outback|SUV|Green|789012|35000.00|17500.00|2450.00|19950.00|554.17
+SALE|20241010|George Yellow|george.yellow@example.com|11567|2015|Volkswagen|Jetta|Sedan|Silver|890123|13000.00|650.00|100.00|495.00|14245.00|true|0.0425
+LEASE|20241115|Hannah Purple|hannah.purple@example.com|31678|2020|Honda|CR-V|SUV|Blue|901234|30000.00|15000.00|2100.00|17100.00|475.00
+SALE|20241220|Ian Orange|ian.orange@example.com|14189|2017|Ford|Fusion|Sedan|Black|123456|14000.00|700.00|100.00|495.00|15295.00|true|0.0425
+LEASE|20250125|Jack Pink|jack.pink@example.com|15189|2022|Toyota|RAV4|SUV|Red|234567|36000.00|18000.00|2520.00|20520.00|570.00

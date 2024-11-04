@@ -28,6 +28,7 @@ public class SalesContract extends Contract {
         }
         monthlyPayment = getMonthlyPayment();
     }
+
     @Override
     public String toString() {
         System.out.println("Sales Contract");
@@ -64,9 +65,9 @@ public class SalesContract extends Contract {
 
     @Override
     public String formatContract(Contract contract, Vehicle vehicle) {
-        return ("SALE" + "|" + contract.getStartDate() + "|" + contract.getCustomerName() + "|" +
-                contract.getCustomerEmail() + "|" + vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" +
-                vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + contract.getCustomerId() + "|" + vehicle.getPrice() + "|" + salesTax + "|" +
-                recordingFee + "|" + processingFee + "|" + getTotalPrice() + "|" + isFinanced + "|" + annualInterestRate);
+        return String.format("SALE |%-10s|%-15s|%-30s|%-7d|%-5d|%-10s|%-10s|%-10s|%-10s|%-7d|%-10.2f|%-10.2f|%-10.2f|%-10.2f|%-9.2f|%-7b|%-7.3f",
+                contract.getStartDate(), contract.getCustomerName(), contract.getCustomerEmail(), vehicle.getVin(), vehicle.getYear(), vehicle.getMake(),
+                vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), contract.getCustomerId(), vehicle.getPrice(), salesTax, recordingFee,
+                processingFee, getTotalPrice(), isFinanced, annualInterestRate);
     }
 }

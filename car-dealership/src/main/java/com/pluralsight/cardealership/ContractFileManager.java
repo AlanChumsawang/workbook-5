@@ -43,8 +43,7 @@ public class ContractFileManager {
                     dealership.addContract(contract);
                 } else {
                     double totalCost = Double.parseDouble(contractInfo[15]);
-                    boolean financed = Boolean.parseBoolean(contractInfo[15]);
-
+                    boolean financed = Boolean.parseBoolean(contractInfo[16]);
                     SalesContract contract = new SalesContract(startDate, customerName, customerEmail,
                             contractId, vehicle, totalCost,
                             financed);
